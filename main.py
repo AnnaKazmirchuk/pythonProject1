@@ -37,7 +37,7 @@ class Student:
         res = f'Имя студента: {self.name}\nФамилия студента: {self.surname}\n' \
               f'Средняя оценка за домашние задания: {self.average_hw_rate()}\n' \
               f'Курсы в процессе изучения: {self.courses_in_progress_str}\n' \
-              f'Завеершенные курсы: {self.finished_courses_str}'
+              f'Завершенные курсы: {self.finished_courses_str}'
         return res
 
 
