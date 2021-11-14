@@ -102,9 +102,13 @@ some_student.courses_in_progress += ['Python', 'Git']
 some_student.courses_in_progress_str = ", ".join(some_student.courses_in_progress)
 some_student.finished_courses += ['Введение в программирование']
 some_student.finished_courses_str = " ".join(some_student.finished_courses)
-some_student.grades = {'Python':8, 'Git':9}
+some_student.grades = {'Python':9, 'Git': 5}
 another_student = Student('Anna', 'Kazmirchuk', 'Female')
-another_student.grades = {'Python':9, 'Git':10}
+another_student.grades = {'Python':9, 'Git':6}
+another_student.courses_in_progress += ['Python', 'Git']
+another_student.courses_in_progress_str = ", ".join(another_student.courses_in_progress)
+another_student.finished_courses += ['Введение в программирование']
+another_student.finished_courses_str = " ".join(another_student.finished_courses)
 
 some_reviewer = Reviewer('Some', 'Buddy')
 some_reviewer.courses_attached += ['Python']
@@ -117,16 +121,34 @@ another_lecturer.courses_attached += ['Python', 'Git']
 another_lecturer.grades = {'Python':8, 'Git':7}
 
 
-# some_reviewer.rate_hw(some_student, 'Python', 10)
-# some_reviewer.rate_hw(some_student, 'Python', 9)
-# some_reviewer.rate_hw(some_student, 'Python', 9)
-
 print(some_reviewer)
-print()
 print(some_lecturer)
-print()
 print(some_student)
-print()
 some_lecturer.__lt__(another_lecturer)
-print()
 some_student.__lt__(another_student)
+
+students = [some_student, another_student]
+
+def average_hw_rate_all_students(student, course_name):
+    sum_ = 0
+    for student in students:
+        for course in student.grades:
+            if course == course_name:
+                sum_ += student.grades[course]
+    return round(sum_ / len(students), 2)
+
+print(f'Средння оценка по курсу {average_hw_rate_all_students(students, course_name = "Python")}')
+print(f'Средння оценка по курсу {average_hw_rate_all_students(students, course_name = "Git")}')
+
+lecturers = [some_lecturer, another_lecturer]
+
+def average_lecture_rate_all_lectureres(lecturer, course_name):
+    sum_ = 0
+    for lecturer in lecturers:
+        for course in lecturer.grades:
+            if course == course_name:
+                sum_ += lecturer.grades[course]
+    return round(sum_ / len(lecturers), 2)
+
+print(f'Средння оценка за лекции {average_lecture_rate_all_lectureres(lecturers, course_name = "Python")}')
+print(f'Средння оценка за лекции {average_lecture_rate_all_lectureres(lecturers, course_name = "Git")}')
